@@ -3,8 +3,6 @@ package pe.edu.vallegrande.as221s5t03be.service.impl;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import pe.edu.vallegrande.as221s5t03be.config.TranslatorText;
 import pe.edu.vallegrande.as221s5t03be.model.dto.TranslationRequestDto;
@@ -14,6 +12,7 @@ import pe.edu.vallegrande.as221s5t03be.repository.TranslationRepository;
 import pe.edu.vallegrande.as221s5t03be.service.TranslationService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
 import java.io.IOException;
 
 @Service
@@ -67,7 +66,7 @@ public class TranslationServiceImpl implements TranslationService {
             return translationRepository.save(translation1)
                     .map(this::mapResponse);
         } catch (IOException e) {
-            logger.error("An error occurred while translating", e);
+            e.printStackTrace();
             return Mono.error(e);
         }
     }
